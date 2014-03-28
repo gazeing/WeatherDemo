@@ -52,9 +52,9 @@ public final class AppConfig
 			pPage = new SplashPage();
 			break;
 			
-//		case AppConfig.KMainPage:
-//			pPage = new MainPage();
-//			break;
+		case AppConfig.KMainPage:
+			pPage = new MainPage();
+			break;
 //			
 ////		case AppConfig.KMyInfoPage:
 //		case AppConfig.KInputPage:

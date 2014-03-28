@@ -24,7 +24,7 @@ public class SplashPage extends AppPage {
 			@Override
 			public void run() {
 				
-//				goMainPage();
+				goMainPage();
 
 			}
 			
