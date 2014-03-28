@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background">
+    
+   <TextView android:id="@+id/dialog_caption"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/caption"
+        android:layout_marginTop="@dimen/margin_size_30xp"
+        android:textSize="@dimen/front_size_34xp"/>
+
+	<!-- Message part -->
+	<TextView android:id="@+id/dialog_message"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="@dimen/margin_size_30xp"
+	    android:layout_marginLeft="10dip"
+		android:layout_marginRight="10dp"
+		android:layout_marginBottom="@dimen/margin_size_40xp"
+	    android:textColor="@color/coupon_name_color"
+	    android:textSize="@dimen/front_size_32xp"/>
+	
+	<EditText android:id="@+id/dialog_input"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="@dimen/margin_size_30xp"
+	    android:layout_marginLeft="10dip"
+		android:layout_marginRight="10dp"
+		android:layout_marginBottom="@dimen/margin_size_40xp"
+		android:inputType="text"
+		android:visibility="gone"/>
+	
+	<!-- Image for Split line -->
+	<TextView android:layout_width="fill_parent" 
+	    android:layout_height="1dp"
+	    android:background="@color/separator_line"
+	    android:layout_marginTop="@dimen/margin_size_20xp"/>
+	
+	<!-- Button options -->
+	<LinearLayout android:id="@+id/dialog_btn_layout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    
+	    <TextView android:id="@+id/dialog_btn_positive"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:layout_marginRight="1dp"
+	        android:textSize="@dimen/front_size_34xp"
+	        android:padding="10dp"
+	        android:gravity="center_horizontal"
+	        android:textColor="#ff4f96f8"/>
+	    
+	    <TextView android:id="@+id/dialog_btn_separator"
+	        android:layout_width="1dp" 
+		    android:layout_height="fill_parent"
+		    android:background="@color/separator_line"/>
+	    
+	    <TextView android:id="@+id/dialog_btn_negative"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:layout_marginLeft="1dp"
+	        android:textSize="@dimen/front_size_34xp"
+	        android:padding="10dp"
+	        android:gravity="center_horizontal"
+	        android:textColor="#ff4f96f8"/>
+		</LinearLayout>
+</LinearLayout>
