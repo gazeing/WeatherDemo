@@ -31,7 +31,7 @@
         <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Light.NoTitleBar" >
+        android:theme="@style/Theme.AppCompat" >
         <activity
             android:name="com.crazybean.framework.UiActivity"
             android:configChanges="keyboardHidden|orientation"
