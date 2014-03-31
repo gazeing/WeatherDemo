@@ -7,8 +7,6 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Vector;
 
-
-
 import com.crazybean.framework.UiStorage;
 import com.example.weatherdemo.R;
 

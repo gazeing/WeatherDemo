@@ -1,5 +1,6 @@
 package com.example.weatherdemo;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -197,12 +198,19 @@ public class AppPage extends UiPage implements NetTask.IObserver,
 	
 	@Override
 	public void handleResult(byte[] aData, int aType, int aErrCode) {
-		// Notify for the previous data.
-		this.onResponse(aData, aType, aErrCode);
+	    JSONObject aObject = null;
+        try {
+            String strInput = new String(aData);
+            aObject = new JSONObject(strInput);
+        } catch (JSONException aException) {
+            aException.printStackTrace();
+        } finally {
+            onResponse(aObject, aType, aErrCode);
+        }
 	}
 
 	@Override
-	public void notifyData(byte[] arg0, int arg1, int arg2) {
+	public void notifyData(byte[] aData, int arg1, int arg2) {
 	}
 
 	@Override
@@ -214,9 +222,6 @@ public class AppPage extends UiPage implements NetTask.IObserver,
 		default:
 			break;
 		}
-	}
-	
-	protected void onResponse(byte[] aData, int aType, int aErrCode) {
 	}
 	
 	protected void onResponse(JSONObject aObject, int aType, int aErrCode) {
