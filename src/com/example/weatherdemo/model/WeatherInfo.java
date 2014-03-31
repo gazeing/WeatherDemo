@@ -7,8 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.location.Location;
-
 public class WeatherInfo extends InfoEntity {
     public WeatherInfo() {
     }
@@ -22,19 +20,19 @@ public class WeatherInfo extends InfoEntity {
         if( null == aObject )
             return false;
         
+        mCity = new City();
         JSONObject coord = aObject.optJSONObject("coord");
         if( null != coord ) {
-            mCoord = new Location("");
-            mCoord.setLatitude(coord.optDouble("lat"));
-            mCoord.setLongitude(coord.optDouble("lon"));
+            mCity.setLocation(coord.optDouble("lat"), coord.optDouble("lon"));
         }
         
         JSONObject sys = aObject.optJSONObject("sys");
         if( null != sys ) {
-            mCountry = sys.optString("country");
+            mCity.setCountry(sys.optString("country"));
         }
         
-        mName = aObject.optString("name");
+        mCity.setName(aObject.optString("name"));
+        mCity.setId(aObject.optString("id"));
         
         JSONArray weather = aObject.optJSONArray("weather");
         final int length = (null != weather ? weather.length() : 0);
@@ -52,10 +50,13 @@ public class WeatherInfo extends InfoEntity {
         // Wind
         JSONObject main = aObject.optJSONObject("main");
         if( null != main ) {
-            mTemp = main.optString("temp");
             mPressure = main.optString("preesure");
-            mMinTemp = main.optString("temp_min");
-            mMaxTemp = main.optString("temp_max");
+            
+            // Create temperature instance.
+            mTemp = new Temperature();
+            mTemp.setDay(main.optString("temp"));
+            mTemp.setMinimal(main.optString("temp_min"));
+            mTemp.setMaximal(main.optString("temp_max"));
         }
         
         // Wind
@@ -71,17 +72,13 @@ public class WeatherInfo extends InfoEntity {
         return true;
     }
     
-    private Location  mCoord;
-    private String    mCountry;
-    private String    mName;
+    private City      mCity;
     private String    mBase;
-    private String    mTemp;
     private String    mPressure;
     private String    mHumidity;
-    private String    mMinTemp;
-    private String    mMaxTemp;
     private String    mWindSpeed;
     private String    mWindDeg;
     private String    mTimetag;
+    private Temperature mTemp;
     private List<Weather> mWeather;
 }
