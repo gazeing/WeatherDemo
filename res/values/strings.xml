@@ -20,5 +20,142 @@
     <string name="take_picture">Take Picture</string>
     <string name="from_album">From Album</string>
     <string name="input_group_1">input group 1</string>
+    
+    
+ <!--      <string name="app_name">Color Weather Int\'l</string> -->
+    <string name="loading_msg">Loading &#8230;</string>
+    <string name="auto_locating">*Auto Locating</string>
+<!--     <string name="okay">OK</string>
+    <string name="cancel">Cancel</string> -->
+    <string name="setting">Setting</string>
+    <string name="about">About</string>
+    <string name="app_promotion">Color Weather, always with you!</string>
+    <string name="forecast">Forecast</string>
+    <string name="trend">Trend</string>
+    <string name="index">Index</string>
+    <string name="add_city">Add city</string>
+    <string name="taobao">TaoBao</string>
+    <string name="menu">Menu</string>
+    <string name="rate_app">Rate App</string>
+    <string name="feedback">Feedback</string>
+    <string name="skin">Skin</string>
+    <string name="more_apps">More Apps</string>
+    <string name="check_updates">Check Updates</string>
+    <string name="city_list">City List</string>
+    <string name="donation">Donation</string>
+    <string name="website">Website</string>
+    <string name="support">Support</string>
+    <string name="thanks">Thanks</string>
+    <string name="search">Search</string>
+    <string name="uv">UV: </string>
+    <string name="dressing">Dressing: </string>
+    <string name="car_wash">Car Wash: </string>
+    <string name="comfort">Comfort: </string>
+    <string name="allergic">Allergic: </string>
+    <string name="sports">Sports: </string>
+    <string name="humidity">Humidity: </string>
+    <string name="wechat_id">Wechat ID: colorweather</string>
+    <string name="get_weather_info">Get info by replaying City/GPS</string>
+    <string name="QQ_group">QQ Group: 108681064(Verify required)</string>
+    <string name="share_content">Share Application information with friends</string>
+    <string name="auto_locating_failed">Auto locating falied, please select manually</string>
+    <string name="sharing">Sharing</string>
+    <string name="current_version">Current: </string>
+    <string name="donation_on_taobao">Donate us on Taobao.com</string>
+    <string name="view_shop_on_taobao">View Color Weather Shop on Taobao.com</string>
+    <string name="updating">Getting latest data, please wait</string>
+    <string name="update_failed">Update failed, showing old info</string>
+    <string name="hint">Hint</string>
+    <string name="delete">Delete</string>
+    <string name="details">Details</string>
+    <string name="operation_confirm">Delete[X] the City, or View[@] Details?</string>
+    <string name="update_frequency">Update Frequency</string>
+    <string name="transparency">Transparency</string>
+    <string name="transparent_value">0 (Full transparent)</string>
+    <string name="introduction">Introduction</string>
+    <string name="notification_bar">Notification Bar</string>
+    <string name="show_on_noti_bar">Show on Notification Bar</string>
+    <string name="not_show_on_noti_bar">Don\'t show on Notification Bar</string>
+    <string name="notification_icon">Notification Icon</string>
+    <string name="show_weather_icon">Weather Icon</string>
+    <string name="show_temperature">Temperature</string>
+    <string name="view_online_content">View Online Content</string>
+    <string name="rate_app_on_play">Review App on GooglePlay</string>
+    <string name="weekday_or_date">Weekday/Date</string>
+    <string name="show_weekday">Sunday</string>
+    <string name="show_date">20/08</string>
+    <string name="checking_version">Checking version</string>
+    <string name="already_latest_version">You\'re using the latest version</string>
+    <string name="not_available">暂无实况</string>
+    <string name="sunny">晴</string>
+    <string name="cloudy">多云</string>
+    <string name="drizzle">毛毛雨</string>
+    <string name="overcast">阴</string>
+    <string name="light_rain">小雨</string>
+    <string name="heavy_rain">大雨</string>
+    <string name="showers">阵雨</string>
+
+    <string-array name="update_freq_options">
+        <item>30 Min</item>
+        <item>1 Hour</item>
+        <item>2 Hours</item>
+        <item>3 Hours</item>
+        <item>4 Hours</item>
+        <item>Manual</item>
+    </string-array>
+    <string-array name="update_freq_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="widget_clock">Color Weather-Clock 2x1</string>
+    <string name="widget_today_weather_big">Color Weather-Today 4x1</string>
+    <string name="widget_4_weathers">Color Weather-3 Days 4x1</string>
+    <string name="widget_today_select">Color Weather-Setting 2x1</string>
+    <string name="widget_4x2_weathers">Colock+Weather 4x2</string>
+    <string name="widget_weather_clock">Color+Weather 4x1</string>
+
+    <string-array name="update_alpha_options">
+        <item>100%</item>
+        <item>80%</item>
+        <item>60%</item>
+        <item>50%</item>
+        <item>30%</item>
+        <item>0%</item>
+    </string-array>
+    <string-array name="update_alpha_values">
+        <item>10</item>
+        <item>8</item>
+        <item>6</item>
+        <item>5</item>
+        <item>3</item>
+        <item>0</item>
+    </string-array>
+    
+    <string-array name="popup_menus">
+        <item>Add City</item>
+        <item>Settings</item>
+        <item>Skin</item>
+        <item>Rate App</item>
+        <item>Feedback</item>
+        <item>More</item>
+    </string-array>
+
+    <string name="forecast_url">http://m.weather.com.cn/data/%s.html</string>
+    <string name="current_url">http://www.weather.com.cn/data/sk/%s.html</string>
+
+    <color name="content_bg">#3c3c3c</color>
+    <color name="content_down">#33b5e5</color>
+    <color name="title_bg">#222222</color>
+    <color name="default_text_color">#efff</color>
+    <color name="gray_text_color">#eccc</color>
+    <color name="black_color">#000</color>
+    <color name="white_color">#fff</color>
+    <color name="dark_blue_color">#b1bcca</color>
+    <color name="dark_red_color">#793939</color>
 
 </resources>
