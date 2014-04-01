@@ -7,15 +7,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.crazybean.utils.Logger;
 import com.example.weatherdemo.api.WeatherApi;
 import com.example.weatherdemo.model.WeatherInfo;
 import com.example.weatherdemo.views.SlideViewGroup;
 
-public class MainPage extends AppPage{
+public class MainPage extends AppPage implements OnClickListener{
 	
 	View leftView, rightView, mainView;
+	
+	View menu_settingView,menu_skinsView,menu_voteView,menu_feedbackView,menu_donateView;
+	
+	View arrowView;
+	
+	SlideViewGroup svg;
+
 	
 	protected MainPage() {
 		super(R.layout.page_iweather);
@@ -31,81 +39,118 @@ public class MainPage extends AppPage{
 		rightView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_menu, null);
 		mainView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page, null);
 		
-		SlideViewGroup svg = (SlideViewGroup) findViewById(R.id.home_slidegroup);
+		svg = (SlideViewGroup) findViewById(R.id.home_slidegroup);
 		if(svg != null){
 			svg.setMainView(R.layout.middle_main_page);
 			svg.setLeftView(R.layout.left_navigation);
-			svg.setRightView(R.layout.right_menu);
+//			svg.setRightView(R.layout.right_menu);
 		}
 		
 		if(leftView != null){
-			View menu_settingView = leftView.findViewById(R.id.setting);
-			View menu_skinsView = leftView.findViewById(R.id.skins);
-			View menu_voteView = leftView.findViewById(R.id.vote);
-			View menu_feedbackView = leftView.findViewById(R.id.feedback);
-			View menu_donateView = leftView.findViewById(R.id.donateApp);
+			 menu_settingView = leftView.findViewById(R.id.setting);
+			 menu_skinsView = leftView.findViewById(R.id.skins);
+			 menu_voteView = leftView.findViewById(R.id.vote);
+			 menu_feedbackView = leftView.findViewById(R.id.feedback);
+			 menu_donateView = leftView.findViewById(R.id.donateApp);
 			
 			addOnClick(menu_settingView);
 			addOnClick(menu_skinsView);
 			addOnClick(menu_voteView);
 			addOnClick(menu_feedbackView);
 			addOnClick(menu_donateView);
+			
+			menu_settingView.setOnClickListener(this);
+		}
+		
+		if(mainView!=null){
+			arrowView = mainView.findViewById(R.id.backIcon);
+			arrowView.setOnClickListener(this);
 		}
 
 		WeatherApi.getWeatherByName("AU", "Sydney", this);
 	}
 
 	
-	
 	@Override
-	protected void onViewClick(View aView, int nViewId) {
+	public void onClick(View aView) {
 		// TODO Auto-generated method stub
-		super.onViewClick(aView, nViewId);
+		super.onClick(aView);
 		
-		switch(nViewId) 
-		{
-		case R.id.setting:
-			{
-				// Start input activity.
-				// Save the info.
-				Log.d("test","button1");
-				
-//				InputFactory.startInput(null, this);
-			}
-			break;
-			
-		case R.id.skins:
-		{
-			// Start history activity.
-			// Save the info.
-			Bundle pBundle = new Bundle();
-			// Show main page.
-			this.postEvent(AppConfig.KHistory, pBundle);
+		if (aView == menu_settingView){
+			Log.d("test","aview = button1");
 		}
-		break;
 		
-		
-		case R.id.vote:
-		{
-			// Start generate activity.
-			// Save the info.
-			Bundle pBundle = new Bundle();
-			// Show main page.
-			this.postEvent(AppConfig.KGenerate, pBundle);
-		}
-		break;
-		
-		case R.id.donateApp:
-		{
-			// Start dividends activity.
-			// Save the info.
-			Bundle pBundle = new Bundle();
-			// Show main page.
-			this.postEvent(AppConfig.KDividend, pBundle);
-		}
-		break;
+		if (aView == arrowView){
+			Log.d("test","aview = button1");
+			svg.slideView(true);
 		}
 	}
+	
+	
+	
+//	@Override
+//	protected void onViewClick(View aView, int nViewId) {
+//		// TODO Auto-generated method stub
+//		super.onViewClick(aView, nViewId);
+//		
+//		
+////		switch(aView) {
+////		case menu_settingView:
+////			
+////		{
+////			// Start input activity.
+////			// Save the info.
+////			Log.d("test","aview = button1");
+////			
+//////			InputFactory.startInput(null, this);
+////		}
+////		break;
+////		}
+//		
+//		switch(nViewId) 
+//		{
+//		case R.id.setting:
+//			{
+//				// Start input activity.
+//				// Save the info.
+//				Log.d("test","button1");
+//				
+////				InputFactory.startInput(null, this);
+//			}
+//			break;
+//			
+//		case R.id.skins:
+//		{
+//			// Start history activity.
+//			// Save the info.
+//			Bundle pBundle = new Bundle();
+//			// Show main page.
+//			this.postEvent(AppConfig.KHistory, pBundle);
+//		}
+//		break;
+//		
+//		
+//		case R.id.vote:
+//		{
+//			// Start generate activity.
+//			// Save the info.
+//			Bundle pBundle = new Bundle();
+//			// Show main page.
+//			this.postEvent(AppConfig.KGenerate, pBundle);
+//		}
+//		break;
+//		
+//		case R.id.donateApp:
+//		{
+//			// Start dividends activity.
+//			// Save the info.
+//			Bundle pBundle = new Bundle();
+//			// Show main page.
+//			this.postEvent(AppConfig.KDividend, pBundle);
+//		}
+//		break;
+//		}
+//	}
 
 	@Override
 	protected void onResponse(JSONObject aObject, int aType, int aErrCode) {
