@@ -2,10 +2,7 @@ package com.example.weatherdemo;
 
 import org.json.JSONObject;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -35,15 +32,16 @@ public class MainPage extends AppPage implements OnClickListener{
 		
 		super.onCreate();
 
-		leftView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.left_navigation, null);
-		rightView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_menu, null);
-		mainView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page, null);
+//		leftView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.left_navigation, null);
+//		rightView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_menu, null);
+//		mainView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page, null);
 		
 		svg = (SlideViewGroup) findViewById(R.id.home_slidegroup);
 		if(svg != null){
-			svg.setMainView(R.layout.middle_main_page);
-			svg.setLeftView(R.layout.left_navigation);
-			svg.setRightView(R.layout.right_menu);
+			
+			leftView =svg.setLeftView(R.layout.left_navigation);
+			mainView =svg.setMainView(R.layout.middle_main_page);
+			//svg.setRightView(R.layout.right_menu);
 		}
 		
 		if(leftView != null){
@@ -62,18 +60,18 @@ public class MainPage extends AppPage implements OnClickListener{
 			menu_settingView.setOnClickListener(this);
 		}
 		
-//		if(mainView!=null){
-//			arrowView = mainView.findViewById(R.id.backIcon);
-//			arrowView.setOnClickListener(this);
-//		}
+		if(mainView!=null){
+			arrowView = mainView.findViewById(R.id.backIcon);
+			arrowView.setOnClickListener(this);
+		}
 		
-		View arrowView = mainView.findViewById(R.id.backIcon);
-		arrowView.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				svg.slideView(true);
-			}
-		});
+//		View arrowView = mainView.findViewById(R.id.backIcon);
+//		arrowView.setOnClickListener(new OnClickListener(){
+//			@Override
+//			public void onClick(View v) {
+//				svg.slideView(true);
+//			}
+//		});
 
 		WeatherApi.getWeatherByName("AU", "Sydney", this);
 	}
@@ -89,7 +87,7 @@ public class MainPage extends AppPage implements OnClickListener{
 		}
 		
 		if (aView == arrowView){
-			Log.d("test","aview = button1");
+//			Log.d("test","aview = button1");
 			svg.slideView(true);
 		}
 	}
