@@ -43,7 +43,7 @@ public class MainPage extends AppPage implements OnClickListener{
 		if(svg != null){
 			svg.setMainView(R.layout.middle_main_page);
 			svg.setLeftView(R.layout.left_navigation);
-//			svg.setRightView(R.layout.right_menu);
+			svg.setRightView(R.layout.right_menu);
 		}
 		
 		if(leftView != null){
@@ -62,10 +62,18 @@ public class MainPage extends AppPage implements OnClickListener{
 			menu_settingView.setOnClickListener(this);
 		}
 		
-		if(mainView!=null){
-			arrowView = mainView.findViewById(R.id.backIcon);
-			arrowView.setOnClickListener(this);
-		}
+//		if(mainView!=null){
+//			arrowView = mainView.findViewById(R.id.backIcon);
+//			arrowView.setOnClickListener(this);
+//		}
+		
+		View arrowView = mainView.findViewById(R.id.backIcon);
+		arrowView.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				svg.slideView(true);
+			}
+		});
 
 		WeatherApi.getWeatherByName("AU", "Sydney", this);
 	}

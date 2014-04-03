@@ -16,6 +16,11 @@ import android.view.ViewGroup;
 import android.widget.Scroller;
 
 public class SlideViewGroup extends ViewGroup {
+	// Status definition.
+	public static final int STATUS_SHOW_MAIN  = 0;
+	public static final int STATUS_SHOW_LEFT  = (STATUS_SHOW_MAIN + 1);
+	public static final int STATUS_SHOW_RIGHT = (STATUS_SHOW_MAIN + 2);
+		
 	/**
 	 * Constructor while create a new instance directly in code
 	 * @param context
@@ -150,6 +155,9 @@ public class SlideViewGroup extends ViewGroup {
 		return false;
 	}
 	
+	public int getStatus() {
+		return mStatus;
+	}
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
@@ -377,11 +385,12 @@ public class SlideViewGroup extends ViewGroup {
 	}
 	
 	private void trackMotionScroll(int detla) {
-		if(detla == 0) return;
-		int newOffset = mOffset + detla;
+		if(detla == 0)
+			return;
 		
+		int newOffset = mOffset + detla;
 		if((mOffset >= 0 && newOffset < 0) || (mOffset <= 0 && newOffset > 0)) {
-    		onOritationChanged(newOffset > 0);
+			onDirectionChanged(newOffset > 0);
     	}
 		
 		if(newOffset > mMaxOffset) {
@@ -415,26 +424,26 @@ public class SlideViewGroup extends ViewGroup {
 	}
 	
 	private void setStatus(int state) {
-		if(STATUS_SHOW_LEFT == state) return;
+		//if(STATUS_SHOW_LEFT == state) return;
 		mStatus = state;
 	}
 	
-	private void onOritationChanged(boolean toLeft) {
+	private void onDirectionChanged(boolean toLeft) {
 		if(toLeft) {
-			if(mLeftView != null) {
-				mLeftView.setVisibility(View.GONE);
+			if(mRightView != null) {
+				mRightView.setVisibility(View.GONE);
 			}
 			
-			if(mRightView != null) {
+			if(mLeftView != null) {
 				mLeftView.setVisibility(View.VISIBLE);
 			}
 		}
 		else {
-			if(mLeftView != null) {
-				mLeftView.setVisibility(View.VISIBLE);
+			if(mRightView != null) {
+				mRightView.setVisibility(View.VISIBLE);
 			}
 			
-			if(mRightView != null) {
+			if(mLeftView != null) {
 				mLeftView.setVisibility(View.GONE);
 			}
 		}
@@ -494,11 +503,6 @@ public class SlideViewGroup extends ViewGroup {
 	// Touch mode.
 	private static final int TOUCH_MODE_RESET = 0;
 	private static final int TOUCH_MODE_SCROLLING = 1;
-	
-	// State definition.
-	private static final int STATUS_SHOW_MAIN  = 0;
-	private static final int STATUS_SHOW_LEFT  = (STATUS_SHOW_MAIN + 1);
-	private static final int STATUS_SHOW_RIGHT = (STATUS_SHOW_MAIN + 2);
 	
 	private static final int DEFAULT_VIEW_MARGIN = 50;
 	private static final int DEFAULT_SHADE_WIDTH = 10;
