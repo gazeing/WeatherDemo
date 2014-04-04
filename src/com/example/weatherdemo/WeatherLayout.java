@@ -3,6 +3,8 @@ package com.example.weatherdemo;
 
 import org.json.JSONObject;
 
+import com.example.weatherdemo.model.WeatherInfo;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -124,21 +126,21 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 
 	}
 
-	public String getWeatherMsg() {
-		if (weather == null)
-			return "";
-		StringBuilder msg = new StringBuilder();
-		msg.append("Today:").append(weather.city).append(",")
-				.append(weather.weather).append(",").append(weather.temp)
-				.append(",Humidity:").append(weather.humidity).append(",")
-				.append(weather.wind).append("|Tomorrow：")
-				.append(weather.forcasts.get(1).weather).append(",")
-				.append(weather.forcasts.get(1).temp).append("|2 Days：")
-				.append(weather.forcasts.get(2).weather).append(",")
-				.append(weather.forcasts.get(2).temp).append("-ColorWeather");
-
-		return msg.toString();
-	}
+//	public String getWeatherMsg() {
+//		if (weather == null)
+//			return "";
+//		StringBuilder msg = new StringBuilder();
+//		msg.append("Today:").append(weather.city).append(",")
+//				.append(weather.weather).append(",").append(weather.temp)
+//				.append(",Humidity:").append(weather.humidity).append(",")
+//				.append(weather.wind).append("|Tomorrow：")
+//				.append(weather.forcasts.get(1).weather).append(",")
+//				.append(weather.forcasts.get(1).temp).append("|2 Days：")
+//				.append(weather.forcasts.get(2).weather).append(",")
+//				.append(weather.forcasts.get(2).temp).append("-ColorWeather");
+//
+//		return msg.toString();
+//	}
 
 	private void initViews() {
 		if (weather != null) {

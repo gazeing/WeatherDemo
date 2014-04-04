@@ -1,0 +1,124 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|right"
+            android:text="@string/dressing" />
+
+        <TextView
+            android:id="@+id/tvChuanyi"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
+            android:textColor="@color/dark_blue_color"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|right"
+            android:text="@string/uv" />
+
+        <TextView
+            android:id="@+id/tvUV"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
+            android:textColor="@color/dark_blue_color"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|right"
+            android:text="@string/car_wash" />
+
+        <TextView
+            android:id="@+id/tvXiche"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|left"
+            android:paddingLeft="8dp" 
+            android:textColor="@color/dark_blue_color"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|right"
+            android:text="@string/comfort" />
+
+        <TextView
+            android:id="@+id/tvComfort"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
+            android:textColor="@color/dark_blue_color"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|right"
+            android:text="@string/sports" />
+
+        <TextView
+            android:id="@+id/tvChenlian"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
+            android:textColor="@color/dark_blue_color"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|right"
+            android:text="@string/allergic" />
+
+        <TextView
+            android:id="@+id/tvGuomin"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
+            android:textColor="@color/dark_blue_color"/>
+    </TableRow>
+
+</TableLayout>

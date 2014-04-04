@@ -113,6 +113,7 @@ public class MainPage extends AppPage implements OnClickListener {
 	        
 
 
+		 mTabsAdapter.addTab(actionBar.newTab().setText("Sydney"), WeatherFragment.class, null);
 //	        mTabsAdapter = new TabsAdapter(this, mViewPager);
 //	        mTabsAdapter.addTab(bar.newTab().setText("Simple"),
 //	                CountingFragment.class, null);
@@ -206,50 +207,7 @@ public class MainPage extends AppPage implements OnClickListener {
 			notifyDataSetChanged();
 		}
 
-		//
-		// @Override
-		// public int getCount() {
-		// return mTabs.size();
-		// }
-		//
-		// @Override
-		// public Fragment getItem(int position) {
-		// TabInfo info = mTabs.get(position);
-		// return Fragment.instantiate(mContext, info.clss.getName(),
-		// info.args);
-		// }
-		//
-		// @Override
-		// public void onPageScrolled(int position, float positionOffset,
-		// int positionOffsetPixels) {
-		// }
-		//
-		// @Override
-		// public void onPageSelected(int position) {
-		// mActionBar.setSelectedNavigationItem(position);
-		// }
-		//
-		// @Override
-		// public void onPageScrollStateChanged(int state) {
-		// }
-		//
-		// @Override
-		// public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// Object tag = tab.getTag();
-		// for (int i = 0; i < mTabs.size(); i++) {
-		// if (mTabs.get(i) == tag) {
-		// mViewPager.setCurrentItem(i);
-		// }
-		// }
-		// }
-		//
-		// @Override
-		// public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// }
-		//
-		// @Override
-		// public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// }
+
 
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
