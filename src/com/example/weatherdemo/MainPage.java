@@ -4,19 +4,22 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.crazybean.utils.Logger;
 import com.example.weatherdemo.api.WeatherApi;
@@ -83,8 +86,8 @@ public class MainPage extends AppPage implements OnClickListener {
 		}
 
 		if (mainView != null) {
-			arrowView = mainView.findViewById(R.id.backIcon);
-			arrowView.setOnClickListener(this);
+//			arrowView = mainView.findViewById(R.id.backIcon);
+//			arrowView.setOnClickListener(this);
 		}
 
 		// View arrowView = mainView.findViewById(R.id.backIcon);
@@ -133,6 +136,34 @@ public class MainPage extends AppPage implements OnClickListener {
 //	        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
 //	    }
 
+	
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Menu items default to never show in the action bar. On most devices this means
+//        // they will show in the standard options menu panel when the menu button is pressed.
+//        // On xlarge-screen devices a "More" button will appear in the far right of the
+//        // Action Bar that will display remaining items in a cascading menu.
+//        menu.add("Normal item");
+//
+//        MenuItem actionItem = menu.add("Action Button");
+//
+//        // Items that show as actions should favor the "if room" setting, which will
+//        // prevent too many buttons from crowding the bar. Extra items will show in the
+//        // overflow area.
+//        MenuItemCompat.setShowAsAction(actionItem, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+//
+//        // Items that show as actions are strongly encouraged to use an icon.
+//        // These icons are shown without a text description, and therefore should
+//        // be sufficiently descriptive on their own.
+//        actionItem.setIcon(android.R.drawable.ic_menu_share);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        Toast.makeText(this, "Selected Item: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+//        return true;
+//    }
 
 	@Override
 	public void onClick(View aView) {

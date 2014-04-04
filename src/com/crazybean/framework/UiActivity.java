@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.SparseArray;
 import android.view.KeyEvent;
@@ -41,6 +42,7 @@ public final class UiActivity extends ActionBarActivity {
     public void onCreate(Bundle aSavedState)  {
     	// Remove title.
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//    	 supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR);
 		
         // Create the instance.
         super.onCreate(aSavedState);
