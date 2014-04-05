@@ -129,6 +129,7 @@ public class MainPage extends AppPage implements OnClickListener {
 
 	private void initActionBar() {
 		ActionBar actionBar = getActionBar();
+		actionBar.show();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 		
