@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,9 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
+
+import android.support.v7.app.ActionBar;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,6 +55,7 @@ public class MainPage extends AppPage implements OnClickListener {
 
 		super.onCreate();
 
+
 		// leftView =
 		// ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.left_navigation,
 		// null);
@@ -60,6 +65,13 @@ public class MainPage extends AppPage implements OnClickListener {
 		// mainView =
 		// ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page,
 		// null);
+
+
+		
+//		leftView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.left_navigation, null);
+//		rightView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_menu, null);
+//		mainView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page, null);
+		
 
 		svg = (SlideViewGroup) findViewById(R.id.home_slidegroup);
 		if (svg != null) {
@@ -90,6 +102,7 @@ public class MainPage extends AppPage implements OnClickListener {
 //			arrowView.setOnClickListener(this);
 		}
 
+
 		// View arrowView = mainView.findViewById(R.id.backIcon);
 		// arrowView.setOnClickListener(new OnClickListener(){
 		// @Override
@@ -100,7 +113,18 @@ public class MainPage extends AppPage implements OnClickListener {
 
 		initActionBar();
 
+		
+//		View arrowView = mainView.findViewById(R.id.backIcon);
+//		arrowView.setOnClickListener(new OnClickListener(){
+//			@Override
+//			public void onClick(View v) {
+//				svg.slideView(true);
+//			}
+//		});
+
+
 		WeatherApi.getWeatherByName("AU", "Sydney", this);
+		
 	}
 
 	private void initActionBar() {
@@ -179,6 +203,81 @@ public class MainPage extends AppPage implements OnClickListener {
 			svg.slideView(true);
 		}
 	}
+
+	
+	@Override
+    public boolean handleBack() {
+        if( SlideViewGroup.STATUS_SHOW_LEFT == svg.getStatus() ) {
+            return svg.slideView(true);
+        }
+        
+        return super.handleBack();
+    }
+	
+//	@Override
+//	protected void onViewClick(View aView, int nViewId) {
+//		// TODO Auto-generated method stub
+//		super.onViewClick(aView, nViewId);
+//		
+//		
+////		switch(aView) {
+////		case menu_settingView:
+////			
+////		{
+////			// Start input activity.
+////			// Save the info.
+////			Log.d("test","aview = button1");
+////			
+//////			InputFactory.startInput(null, this);
+////		}
+////		break;
+////		}
+//		
+//		switch(nViewId) 
+//		{
+//		case R.id.setting:
+//			{
+//				// Start input activity.
+//				// Save the info.
+//				Log.d("test","button1");
+//				
+////				InputFactory.startInput(null, this);
+//			}
+//			break;
+//			
+//		case R.id.skins:
+//		{
+//			// Start history activity.
+//			// Save the info.
+//			Bundle pBundle = new Bundle();
+//			// Show main page.
+//			this.postEvent(AppConfig.KHistory, pBundle);
+//		}
+//		break;
+//		
+//		
+//		case R.id.vote:
+//		{
+//			// Start generate activity.
+//			// Save the info.
+//			Bundle pBundle = new Bundle();
+//			// Show main page.
+//			this.postEvent(AppConfig.KGenerate, pBundle);
+//		}
+//		break;
+//		
+//		case R.id.donateApp:
+//		{
+//			// Start dividends activity.
+//			// Save the info.
+//			Bundle pBundle = new Bundle();
+//			// Show main page.
+//			this.postEvent(AppConfig.KDividend, pBundle);
+//		}
+//		break;
+//		}
+//	}
+
 
 	@Override
 	protected void onResponse(JSONObject aObject, int aType, int aErrCode) {
