@@ -2,6 +2,7 @@ package com.example.weatherdemo;
 
 import org.json.JSONObject;
 
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +32,7 @@ public class MainPage extends AppPage implements OnClickListener{
 	protected void onCreate() {
 		
 		super.onCreate();
-
+		
 //		leftView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.left_navigation, null);
 //		rightView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_menu, null);
 //		mainView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page, null);
@@ -72,8 +73,10 @@ public class MainPage extends AppPage implements OnClickListener{
 //				svg.slideView(true);
 //			}
 //		});
+		ActionBar actionBar = this.getActionBar();
 
 		WeatherApi.getWeatherByName("AU", "Sydney", this);
+		
 	}
 
 	
@@ -92,7 +95,14 @@ public class MainPage extends AppPage implements OnClickListener{
 		}
 	}
 	
-	
+	@Override
+    public boolean handleBack() {
+        if( SlideViewGroup.STATUS_SHOW_LEFT == svg.getStatus() ) {
+            return svg.slideView(true);
+        }
+        
+        return super.handleBack();
+    }
 	
 //	@Override
 //	protected void onViewClick(View aView, int nViewId) {
