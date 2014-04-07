@@ -7,10 +7,10 @@ public final class AppConfig
 { 
 	// State table.
 	public static final int KStateTable[][] =
+			
 	{
-		{UiConfig.KStateChaos,    UiConfig.KEventInit,         AppConfig.KSplashPage},
 		{UiConfig.KStateAny,      UiConfig.KEventBack,         UiConfig.KStatePrev},
-		
+		{UiConfig.KStateChaos,		UiConfig.KEventInit,		AppConfig.KSplashPage},
 		{UiConfig.KStateAny,      AppConfig.KShowMain,         AppConfig.KMainPage},
 		{AppConfig.KMainPage,     UiConfig.KEventBack,         UiConfig.KStateChaos},
 //		

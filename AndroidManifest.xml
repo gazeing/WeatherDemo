@@ -33,11 +33,8 @@
         android:theme="@style/Theme.AppCompat" >
         <activity
             android:name="com.crazybean.framework.UiActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan"
-           >
+            android:label="@string/app_name">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

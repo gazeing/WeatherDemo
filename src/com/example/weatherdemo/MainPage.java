@@ -5,26 +5,19 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 
 
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
-
-import android.support.v7.app.ActionBar;
-
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
-
 import com.crazybean.utils.Logger;
 import com.example.weatherdemo.api.WeatherApi;
 import com.example.weatherdemo.model.WeatherInfo;
@@ -54,6 +47,8 @@ public class MainPage extends AppPage implements OnClickListener {
 	protected void onCreate() {
 
 		super.onCreate();
+		
+
 
 
 		// leftView =
@@ -76,7 +71,7 @@ public class MainPage extends AppPage implements OnClickListener {
 		svg = (SlideViewGroup) findViewById(R.id.home_slidegroup);
 		if (svg != null) {
 
-			leftView = svg.setLeftView(R.layout.left_navigation);
+//			leftView = svg.setLeftView(R.layout.left_navigation);
 			mainView = svg.setMainView(R.layout.middle_main_page);
 			// svg.setRightView(R.layout.right_menu);
 		}
@@ -110,9 +105,9 @@ public class MainPage extends AppPage implements OnClickListener {
 		// svg.slideView(true);
 		// }
 		// });
+		setOptionsMenuRes(R.menu.main_page_menu, true);
 
-		initActionBar();
-
+	
 		
 //		View arrowView = mainView.findViewById(R.id.backIcon);
 //		arrowView.setOnClickListener(new OnClickListener(){
@@ -127,21 +122,39 @@ public class MainPage extends AppPage implements OnClickListener {
 		
 	}
 
+	@Override
+	protected void onActivate() {
+		// TODO Auto-generated method stub
+		super.onActivate();
+		initActionBar();
+		
+
+	}
+	
+	
+
 	private void initActionBar() {
 		ActionBar actionBar = getActionBar();
+//		setOptionsMenuRes(R.menu.main_page_menu, true);
 		actionBar.show();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-		
-		 mViewPager = (ViewPager) mainView.findViewById(R.id.mScrollLayout);
-		 mTabsAdapter = new TabsAdapter(getFragmentManager(), mViewPager, actionBar, getContext());
-
-		//actionBar.hide();
-
-	        
-
-
-		 mTabsAdapter.addTab(actionBar.newTab().setText("Sydney"), WeatherFragment.class, null);
+//		setOptionsMenuRes(R.menu.main_page_menu, true);
+//		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+////		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+//		
+//
+//		
+//		 mViewPager = (ViewPager) mainView.findViewById(R.id.mScrollLayout);
+//		 mTabsAdapter = new TabsAdapter(getFragmentManager(), mViewPager, actionBar, getContext());
+//
+//		//actionBar.hide();
+//
+//	        
+//
+//
+//		 mTabsAdapter.addTab(actionBar.newTab().setText("Sydney"), WeatherFragment.class, null);
+//
+//		 mTabsAdapter.addTab(actionBar.newTab().setText("Brisbane"), WeatherFragment.class, null);
+//		 mTabsAdapter.addTab(actionBar.newTab().setText("Adelade"), WeatherFragment.class, null);
 //	        mTabsAdapter = new TabsAdapter(this, mViewPager);
 //	        mTabsAdapter.addTab(bar.newTab().setText("Simple"),
 //	                CountingFragment.class, null);
@@ -183,6 +196,8 @@ public class MainPage extends AppPage implements OnClickListener {
 //        actionItem.setIcon(android.R.drawable.ic_menu_share);
 //        return true;
 //    }
+	
+	
 //
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
@@ -205,7 +220,34 @@ public class MainPage extends AppPage implements OnClickListener {
 		}
 	}
 
-	
+//	
+//	@Override
+//	public boolean onPrepareOptionsMenu(Menu menu) {
+//		//  Menu items default to never show in the action bar. On most devices this means
+//      // they will show in the standard options menu panel when the menu button is pressed.
+//      // On xlarge-screen devices a "More" button will appear in the far right of the
+//      // Action Bar that will display remaining items in a cascading menu.
+//      menu.add("Normal item");
+//
+//      MenuItem actionItem = menu.add("Action Button");
+//
+//      // Items that show as actions should favor the "if room" setting, which will
+//      // prevent too many buttons from crowding the bar. Extra items will show in the
+//      // overflow area.
+//      MenuItemCompat.setShowAsAction(actionItem, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+//
+//      // Items that show as actions are strongly encouraged to use an icon.
+//      // These icons are shown without a text description, and therefore should
+//      // be sufficiently descriptive on their own.
+//      actionItem.setIcon(android.R.drawable.ic_menu_share);
+////      return true;
+//		return super.onPrepareOptionsMenu(menu);
+		
+//		menu.clear();
+//		MenuInflater inflater = getMenuInflater();
+//		inflater.inflate(R.menu.chat_menu, menu);
+//	}
+
 	@Override
     public boolean handleBack() {
         if( SlideViewGroup.STATUS_SHOW_LEFT == svg.getStatus() ) {
