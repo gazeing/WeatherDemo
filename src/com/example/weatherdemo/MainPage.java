@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 
 
+
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,8 +18,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
+
 import com.crazybean.utils.Logger;
 import com.example.weatherdemo.api.WeatherApi;
 import com.example.weatherdemo.model.WeatherInfo;
@@ -71,7 +76,7 @@ public class MainPage extends AppPage implements OnClickListener {
 		svg = (SlideViewGroup) findViewById(R.id.home_slidegroup);
 		if (svg != null) {
 
-//			leftView = svg.setLeftView(R.layout.left_navigation);
+			leftView = svg.setLeftView(R.layout.left_navigation);
 			mainView = svg.setMainView(R.layout.middle_main_page);
 			// svg.setRightView(R.layout.right_menu);
 		}
@@ -138,23 +143,23 @@ public class MainPage extends AppPage implements OnClickListener {
 //		setOptionsMenuRes(R.menu.main_page_menu, true);
 		actionBar.show();
 //		setOptionsMenuRes(R.menu.main_page_menu, true);
-//		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-////		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-//		
-//
-//		
-//		 mViewPager = (ViewPager) mainView.findViewById(R.id.mScrollLayout);
-//		 mTabsAdapter = new TabsAdapter(getFragmentManager(), mViewPager, actionBar, getContext());
-//
-//		//actionBar.hide();
-//
-//	        
-//
-//
-//		 mTabsAdapter.addTab(actionBar.newTab().setText("Sydney"), WeatherFragment.class, null);
-//
-//		 mTabsAdapter.addTab(actionBar.newTab().setText("Brisbane"), WeatherFragment.class, null);
-//		 mTabsAdapter.addTab(actionBar.newTab().setText("Adelade"), WeatherFragment.class, null);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+		
+
+		
+		 mViewPager = (ViewPager) mainView.findViewById(R.id.mScrollLayout);
+		 mTabsAdapter = new TabsAdapter(getFragmentManager(), mViewPager, actionBar, getContext());
+
+		//actionBar.hide();
+
+	        
+
+
+		 mTabsAdapter.addTab(actionBar.newTab().setText("Sydney"), WeatherFragment.class, null);
+
+		 mTabsAdapter.addTab(actionBar.newTab().setText("Brisbane"), WeatherFragment.class, null);
+		 mTabsAdapter.addTab(actionBar.newTab().setText("Adelade"), WeatherFragment.class, null);
 //	        mTabsAdapter = new TabsAdapter(this, mViewPager);
 //	        mTabsAdapter.addTab(bar.newTab().setText("Simple"),
 //	                CountingFragment.class, null);
@@ -199,11 +204,12 @@ public class MainPage extends AppPage implements OnClickListener {
 	
 	
 //
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        Toast.makeText(this, "Selected Item: " + item.getTitle(), Toast.LENGTH_SHORT).show();
-//        return true;
-//    }
+    @Override 
+	protected boolean onOptionsItemSelected(int nItemId) {
+        Toast.makeText(this.getContext(), "Selected Item: " + nItemId, Toast.LENGTH_SHORT).show();
+        return true;
+	}
+
 
 	@Override
 	public void onClick(View aView) {
