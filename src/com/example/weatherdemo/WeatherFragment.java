@@ -2,8 +2,19 @@ package com.example.weatherdemo;
 
 
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import com.example.weatherdemo.model.WeatherInfo;
 import com.example.weatherdemo.views.UiUtils;
+
+
+
+
+
+
 
 
 
@@ -15,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,10 +42,12 @@ public class WeatherFragment extends Fragment implements OnClickListener{
 	
 public void setWeatherInfo(WeatherInfo weatherInfo) {
 		this.weatherInfo = weatherInfo;
+		init();
+		
 	}
 
 private RelativeLayout ll;
-@SuppressWarnings("unused")
+
 private FragmentActivity fa;
 
 
@@ -77,39 +91,62 @@ View chartView;
 	}
 	
 	private void initToadyInfo() {
-		initTabs(btnIndexs);
+		TextView cityTV = (TextView) ll.findViewById(R.id.cityTV);
+		cityTV.setText(weatherInfo.getmCity().getName());
 
-		LinearLayout forcastLLayout = (LinearLayout) ll.findViewById(R.id.forcastLLayout);
-		if (indexView != null) {
-			forcastLLayout.removeAllViews();
-			forcastLLayout.addView(indexView, new LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-			return;
-		}
-		LayoutInflater inflater = (LayoutInflater) fa
-				.getSystemService(fa.LAYOUT_INFLATER_SERVICE);
-		indexView = (LinearLayout) inflater.inflate(R.layout.weather_indexs,
-				null);
-
-		((TextView) indexView.findViewById(R.id.tvChuanyi))
-				.setText("23");
-		((TextView) indexView.findViewById(R.id.tvUV))
-				.setText("44");
-		((TextView) indexView.findViewById(R.id.tvXiche))
-				.setText("72");
-		((TextView) indexView.findViewById(R.id.tvComfort))
-				.setText("51");
-		((TextView) indexView.findViewById(R.id.tvChenlian))
-				.setText("37");
-		((TextView) indexView.findViewById(R.id.tvGuomin))
-				.setText("81");
-
-		forcastLLayout.removeAllViews();
-		forcastLLayout.addView(indexView, new LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//		String time = weather.date + " " + weather.time;
+//		time = ConstUtils.checkDate(time, weather.time);
+//		TextView tvInfo = (TextView)ll. findViewById(R.id.tvInfo);
+//		tvInfo.setText("isoldtime");
+//
+		TextView todayTV = (TextView) ll.findViewById(R.id.updateTimeTV);
+		todayTV.setText("Update: "
+				+ getWeatherTime(weatherInfo));
+//
+		TextView todayTempNow = (TextView) ll.findViewById(R.id.todayTempNow);
+		todayTempNow.setText(getNormalTemp(weatherInfo.getmTemp().getDay()) + "°C");
+//
+		TextView todayTemp = (TextView) ll.findViewById(R.id.todayTemp);
+		todayTemp.setText(getNormalTemp(weatherInfo.getmTemp().getMaximal()) + "°C/"+getNormalTemp(weatherInfo.getmTemp().getMinimal())+"°C");
+//
+		TextView todayDesc = (TextView)ll. findViewById(R.id.todayDesc);
+		todayDesc.setText(weatherInfo.getmWeather().get(0).getDesc());
+//
+		TextView todayWet = (TextView) ll.findViewById(R.id.todayWet);
+		String strHumidity = fa.getString(R.string.humidity) + weatherInfo.getmHumidity();
+		todayWet.setText(strHumidity);
+//
+		TextView todayWind = (TextView) ll.findViewById(R.id.todayWind);
+		todayWind.setText(weatherInfo.getmWindDeg()+" "+weatherInfo.getmWindSpeed());
+//
+		ImageView img = (ImageView) ll.findViewById(R.id.todayImg);
+//
+//		img.setImageURI(ConstUtils.getWeatherUri(mContext, weather.img));
+		img.setImageResource(getWeatherImage(weatherInfo));
 		
 	}
 	
+	private String getWeatherTime(WeatherInfo weatherInfo2) {
+		long timetag = Long.parseLong(weatherInfo2.getmTimetag());
+		String time ="";
+		if(timetag!=0){
+			SimpleDateFormat sdf = new SimpleDateFormat("E dd, MMM/yyyy");
+			sdf.setTimeZone(TimeZone.getDefault());
+			return sdf.format(new Date(timetag));
+		}
+		return time;
+	}
+
+	private int getNormalTemp(String day) {
+		
+		return (int)(Double.parseDouble(day)-273.15);
+	}
+
+	private int getWeatherImage(WeatherInfo weatherInfo2) {
+		// TODO Auto-generated method stub
+		return R.drawable.day0;
+	}
+
 	public void initTabs(View view) {
 		(btnForcast).setBackgroundResource(R.drawable.tab_normal);
 		(btnChart).setBackgroundResource(R.drawable.tab_normal);
@@ -152,8 +189,36 @@ View chartView;
 	}
 
 	private void initIndexsView() {
-		// TODO Auto-generated method stub
-		
+		initTabs(btnIndexs);
+
+		LinearLayout forcastLLayout = (LinearLayout) ll.findViewById(R.id.forcastLLayout);
+		if (indexView != null) {
+			forcastLLayout.removeAllViews();
+			forcastLLayout.addView(indexView, new LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			return;
+		}
+		LayoutInflater inflater = (LayoutInflater) fa
+				.getSystemService(fa.LAYOUT_INFLATER_SERVICE);
+		indexView = (LinearLayout) inflater.inflate(R.layout.weather_indexs,
+				null);
+
+		((TextView) indexView.findViewById(R.id.tvChuanyi))
+				.setText("23");
+		((TextView) indexView.findViewById(R.id.tvUV))
+				.setText("44");
+		((TextView) indexView.findViewById(R.id.tvXiche))
+				.setText("72");
+		((TextView) indexView.findViewById(R.id.tvComfort))
+				.setText("51");
+		((TextView) indexView.findViewById(R.id.tvChenlian))
+				.setText("37");
+		((TextView) indexView.findViewById(R.id.tvGuomin))
+				.setText("81");
+
+		forcastLLayout.removeAllViews();
+		forcastLLayout.addView(indexView, new LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
 	private void initLineChartView() {

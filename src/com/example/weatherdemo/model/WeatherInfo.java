@@ -81,4 +81,41 @@ public class WeatherInfo extends InfoEntity {
     private String    mTimetag;
     private Temperature mTemp;
     private List<Weather> mWeather;
+    
+    
+	public City getmCity() {
+		return mCity;
+	}
+
+	public String getmBase() {
+		return mBase;
+	}
+
+	public String getmPressure() {
+		return mPressure;
+	}
+
+	public String getmHumidity() {
+		return mHumidity;
+	}
+
+	public String getmWindSpeed() {
+		return mWindSpeed;
+	}
+
+	public String getmWindDeg() {
+		return mWindDeg;
+	}
+
+	public String getmTimetag() {
+		return mTimetag;
+	}
+
+	public Temperature getmTemp() {
+		return mTemp;
+	}
+
+	public List<Weather> getmWeather() {
+		return mWeather;
+	}
 }

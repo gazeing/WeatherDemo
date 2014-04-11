@@ -124,6 +124,7 @@ public class MainPage extends AppPage implements OnClickListener {
 
 
 		WeatherApi.getWeatherByName("AU", "Sydney", this);
+//		WeatherApi.getWeatherByName("CN", "Beijing", this);
 		
 	}
 
@@ -263,75 +264,16 @@ public class MainPage extends AppPage implements OnClickListener {
         return super.handleBack();
     }
 	
-//	@Override
-//	protected void onViewClick(View aView, int nViewId) {
-//		// TODO Auto-generated method stub
-//		super.onViewClick(aView, nViewId);
-//		
-//		
-////		switch(aView) {
-////		case menu_settingView:
-////			
-////		{
-////			// Start input activity.
-////			// Save the info.
-////			Log.d("test","aview = button1");
-////			
-//////			InputFactory.startInput(null, this);
-////		}
-////		break;
-////		}
-//		
-//		switch(nViewId) 
-//		{
-//		case R.id.setting:
-//			{
-//				// Start input activity.
-//				// Save the info.
-//				Log.d("test","button1");
-//				
-////				InputFactory.startInput(null, this);
-//			}
-//			break;
-//			
-//		case R.id.skins:
-//		{
-//			// Start history activity.
-//			// Save the info.
-//			Bundle pBundle = new Bundle();
-//			// Show main page.
-//			this.postEvent(AppConfig.KHistory, pBundle);
-//		}
-//		break;
-//		
-//		
-//		case R.id.vote:
-//		{
-//			// Start generate activity.
-//			// Save the info.
-//			Bundle pBundle = new Bundle();
-//			// Show main page.
-//			this.postEvent(AppConfig.KGenerate, pBundle);
-//		}
-//		break;
-//		
-//		case R.id.donateApp:
-//		{
-//			// Start dividends activity.
-//			// Save the info.
-//			Bundle pBundle = new Bundle();
-//			// Show main page.
-//			this.postEvent(AppConfig.KDividend, pBundle);
-//		}
-//		break;
-//		}
-//	}
+
 
 
 	@Override
 	protected void onResponse(JSONObject aObject, int aType, int aErrCode) {
 		WeatherInfo weather = new WeatherInfo();
 		weather.fromJson(aObject);
+		
+		WeatherFragment wFragment = ((WeatherFragment)getFragmentManager().getFragments().get(0));
+		wFragment.setWeatherInfo(weather);
 		Logger.log(weather.toString());
 	}
 
