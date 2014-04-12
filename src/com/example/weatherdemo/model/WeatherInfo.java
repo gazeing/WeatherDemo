@@ -72,7 +72,7 @@ public class WeatherInfo extends InfoEntity {
         
         // DT
         final long nDateTime = aObject.optLong("dt");
-        Date pDate = new Date(nDateTime);
+        Date pDate = new Date(nDateTime*1000);
         mTimetag = mFormat.format(pDate);
         
         return true;

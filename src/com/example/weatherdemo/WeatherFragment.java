@@ -127,14 +127,14 @@ View chartView;
 	}
 	
 	private String getWeatherTime(WeatherInfo weatherInfo2) {
-		long timetag = Long.parseLong(weatherInfo2.getTimetag());
-		String time ="";
-		if(timetag!=0){
-			SimpleDateFormat sdf = new SimpleDateFormat("E dd, MMM/yyyy");
-			sdf.setTimeZone(TimeZone.getDefault());
-			return sdf.format(new Date(timetag));
-		}
-		return time;
+//		long timetag = Long.parseLong(weatherInfo2.getTimetag());
+//		String time ="";
+//		if(timetag!=0){
+//			SimpleDateFormat sdf = new SimpleDateFormat("E dd, MMM/yyyy");
+//			sdf.setTimeZone(TimeZone.getDefault());
+//			return sdf.format(new Date(timetag));
+//		}
+		return weatherInfo2.getTimetag();
 	}
 
 	private int getNormalTemp(String day) {
