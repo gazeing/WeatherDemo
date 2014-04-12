@@ -92,7 +92,7 @@ View chartView;
 	
 	private void initToadyInfo() {
 		TextView cityTV = (TextView) ll.findViewById(R.id.cityTV);
-		cityTV.setText(weatherInfo.getmCity().getName());
+		cityTV.setText(weatherInfo.getCity().getName());
 
 //		String time = weather.date + " " + weather.time;
 //		time = ConstUtils.checkDate(time, weather.time);
@@ -104,20 +104,20 @@ View chartView;
 				+ getWeatherTime(weatherInfo));
 //
 		TextView todayTempNow = (TextView) ll.findViewById(R.id.todayTempNow);
-		todayTempNow.setText(getNormalTemp(weatherInfo.getmTemp().getDay()) + "°C");
+		todayTempNow.setText(getNormalTemp(weatherInfo.getTemp().getDay()) + "°C");
 //
 		TextView todayTemp = (TextView) ll.findViewById(R.id.todayTemp);
-		todayTemp.setText(getNormalTemp(weatherInfo.getmTemp().getMaximal()) + "°C/"+getNormalTemp(weatherInfo.getmTemp().getMinimal())+"°C");
+		todayTemp.setText(getNormalTemp(weatherInfo.getTemp().getMaximal()) + "°C/"+getNormalTemp(weatherInfo.getTemp().getMinimal())+"°C");
 //
 		TextView todayDesc = (TextView)ll. findViewById(R.id.todayDesc);
-		todayDesc.setText(weatherInfo.getmWeather().get(0).getDesc());
+		todayDesc.setText(weatherInfo.getWeather().get(0).getDesc());
 //
 		TextView todayWet = (TextView) ll.findViewById(R.id.todayWet);
-		String strHumidity = fa.getString(R.string.humidity) + weatherInfo.getmHumidity();
+		String strHumidity = fa.getString(R.string.humidity) + weatherInfo.getHumidity();
 		todayWet.setText(strHumidity);
 //
 		TextView todayWind = (TextView) ll.findViewById(R.id.todayWind);
-		todayWind.setText(weatherInfo.getmWindDeg()+" "+weatherInfo.getmWindSpeed());
+		todayWind.setText(weatherInfo.getWindDeg()+" "+weatherInfo.getWindSpeed());
 //
 		ImageView img = (ImageView) ll.findViewById(R.id.todayImg);
 //
@@ -127,7 +127,7 @@ View chartView;
 	}
 	
 	private String getWeatherTime(WeatherInfo weatherInfo2) {
-		long timetag = Long.parseLong(weatherInfo2.getmTimetag());
+		long timetag = Long.parseLong(weatherInfo2.getTimetag());
 		String time ="";
 		if(timetag!=0){
 			SimpleDateFormat sdf = new SimpleDateFormat("E dd, MMM/yyyy");

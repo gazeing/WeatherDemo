@@ -1,6 +1,8 @@
 package com.example.weatherdemo.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 
 public class WeatherInfo extends InfoEntity {
     public WeatherInfo() {
+        mFormat = new SimpleDateFormat("hh:mm dd/MM/yyyy");
     }
     
     @Override
@@ -68,7 +71,9 @@ public class WeatherInfo extends InfoEntity {
         }
         
         // DT
-        mTimetag = aObject.optString("dt");
+        final long nDateTime = aObject.optLong("dt");
+        Date pDate = new Date(nDateTime);
+        mTimetag = mFormat.format(pDate);
         
         return true;
     }
@@ -82,41 +87,41 @@ public class WeatherInfo extends InfoEntity {
     private String    mTimetag;
     private Temperature mTemp;
     private List<Weather> mWeather;
+    private SimpleDateFormat mFormat;
     
-    
-	public City getmCity() {
+	public City getCity() {
 		return mCity;
 	}
 
-	public String getmBase() {
+	public String getBase() {
 		return mBase;
 	}
 
-	public String getmPressure() {
+	public String getPressure() {
 		return mPressure;
 	}
 
-	public String getmHumidity() {
+	public String getHumidity() {
 		return mHumidity;
 	}
 
-	public String getmWindSpeed() {
+	public String getWindSpeed() {
 		return mWindSpeed;
 	}
 
-	public String getmWindDeg() {
+	public String getWindDeg() {
 		return mWindDeg;
 	}
 
-	public String getmTimetag() {
+	public String getTimetag() {
 		return mTimetag;
 	}
 
-	public Temperature getmTemp() {
+	public Temperature getTemp() {
 		return mTemp;
 	}
 
-	public List<Weather> getmWeather() {
+	public List<Weather> getWeather() {
 		return mWeather;
 	}
 }
