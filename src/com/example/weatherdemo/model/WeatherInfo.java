@@ -50,7 +50,8 @@ public class WeatherInfo extends InfoEntity {
         // Wind
         JSONObject main = aObject.optJSONObject("main");
         if( null != main ) {
-            mPressure = main.optString("preesure");
+            mPressure = main.optString("pressure");
+            mHumidity = main.optString("humidity");
             
             // Create temperature instance.
             mTemp = new Temperature();
