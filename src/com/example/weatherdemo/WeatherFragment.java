@@ -127,14 +127,14 @@ View chartView;
 	}
 	
 	private String getWeatherTime(WeatherInfo weatherInfo2) {
-		long timetag = Long.parseLong(weatherInfo2.getmTimetag());
-		String time ="";
-		if(timetag!=0){
-			SimpleDateFormat sdf = new SimpleDateFormat("E dd, MMM/yyyy");
-			sdf.setTimeZone(TimeZone.getDefault());
-			return sdf.format(new Date(timetag));
-		}
-		return time;
+//		long timetag = Long.parseLong(weatherInfo2.getmTimetag());
+//		String time ="";
+//		if(timetag!=0){
+//			SimpleDateFormat sdf = new SimpleDateFormat("E dd, MMM/yyyy");
+//			sdf.setTimeZone(TimeZone.getDefault());
+//			return sdf.format(new Date(timetag));
+//		}
+		return weatherInfo2.getmTimetag();
 	}
 
 	private int getNormalTemp(String day) {
@@ -161,14 +161,15 @@ View chartView;
 			return;
 		switch (v.getId()) {
 		case R.id.btnForcast:
+			initTabs(btnForcast);
 			initForcastWeather();
 			break;
 		case R.id.btnChart:
-
+			initTabs(btnChart);
 			initLineChartView();
 			break;
 		case R.id.btnIndexs:
-
+			initTabs(btnIndexs);
 			initIndexsView();
 			break;
 //		case R.id.btnTaobao:
