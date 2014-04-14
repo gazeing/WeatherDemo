@@ -3,12 +3,14 @@ package com.example.weatherdemo;
 
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import com.crazybean.network.NetTask;
 import com.example.weatherdemo.model.WeatherInfo;
 import com.example.weatherdemo.views.UiUtils;
+
+
 
 
 
@@ -31,11 +33,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class WeatherFragment extends Fragment implements OnClickListener{
+public class WeatherFragment extends Fragment implements NetTask.IObserver,OnClickListener{
 	
 	
 
 	WeatherInfo weatherInfo;
+	String cityName;
 	
 	
 
@@ -66,6 +69,8 @@ View chartView;
 				container, false);
 		init();
 		
+		
+		cityName = this.getArguments().getString("name");
 
 
 		return ll;
@@ -230,6 +235,40 @@ View chartView;
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void handleResult(byte[] aData, int aType, int aErrCode) {
+	    JSONObject aObject = null;
+        try {
+            String strInput = new String(aData);
+            aObject = new JSONObject(strInput);
+        } catch (JSONException aException) {
+            aException.printStackTrace();
+        } finally {
+            onResponse(aObject, aType, aErrCode);
+        }
+		
+	}
 	
+	protected void onResponse(JSONObject aObject, int aType, int aErrCode) {
+	}
+
+	@Override
+	public void notifyData(byte[] arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+    public static WeatherFragment newInstance(String text) {
+
+    	WeatherFragment f = new WeatherFragment();
+        Bundle b = new Bundle();
+        b.putString("name", text);
+
+        f.setArguments(b);
+
+        return f;
+    }
 
 }
