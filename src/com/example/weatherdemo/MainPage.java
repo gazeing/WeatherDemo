@@ -110,12 +110,9 @@ public class MainPage extends AppPage implements OnClickListener {
 
 
 
-		 AddWeatherTab(actionBar,"AU","Sydney");
-		 AddWeatherTab(actionBar,"AU","Brisbane");
-		 AddWeatherTab(actionBar,"AU","Adelaide");
-		 AddWeatherTab(actionBar,"AU","Sydney");
-		 AddWeatherTab(actionBar,"AU","Brisbane");
-		 AddWeatherTab(actionBar,"AU","Adelaide");
+
+		 AddWeatherTab("AU","Brisbane");
+	
 
 
 
@@ -125,8 +122,8 @@ public class MainPage extends AppPage implements OnClickListener {
 
 	
 	
-private void AddWeatherTab(ActionBar actionBar, String country, String cityName) {
-	 mTabsAdapter.addTab(actionBar.newTab().setText(cityName).setContentDescription(country), WeatherFragment.class, null);
+private void AddWeatherTab( String country, String cityName) {
+	 mTabsAdapter.addTab(getActionBar().newTab().setText(cityName).setContentDescription(country), WeatherFragment.class, null);
 		
 	}
 
@@ -147,7 +144,24 @@ private void AddWeatherTab(ActionBar actionBar, String country, String cityName)
 
 
 	private void showAddPage() {
-		// TODO Auto-generated method stub
+		AddCityDialog addCityDialog = new AddCityDialog();
+		addCityDialog.setAddCityDialogListener(new AddCityDialogListener() {
+			
+
+			
+			@Override
+			public void userCanceled() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void userSelectedAValue(String coutry, String city) {
+				MainPage.this.AddWeatherTab( coutry, city);
+				
+			}
+		});
+		addCityDialog.ShowDialog(getContext());
 		
 	}
 
