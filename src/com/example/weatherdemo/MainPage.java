@@ -2,12 +2,6 @@ package com.example.weatherdemo;
 
 import java.util.ArrayList;
 
-import org.json.JSONObject;
-
-
-
-
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,14 +12,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-import com.crazybean.utils.Logger;
-import com.example.weatherdemo.api.WeatherApi;
-import com.example.weatherdemo.model.WeatherInfo;
 import com.example.weatherdemo.views.SlideViewGroup;
 
 public class MainPage extends AppPage implements OnClickListener {
@@ -56,22 +46,7 @@ public class MainPage extends AppPage implements OnClickListener {
 
 
 
-		// leftView =
-		// ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.left_navigation,
-		// null);
-		// rightView =
-		// ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_menu,
-		// null);
-		// mainView =
-		// ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page,
-		// null);
 
-
-		
-//		leftView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.left_navigation, null);
-//		rightView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_menu, null);
-//		mainView = ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.middle_main_page, null);
-		
 
 		svg = (SlideViewGroup) findViewById(R.id.home_slidegroup);
 		if (svg != null) {
@@ -98,39 +73,20 @@ public class MainPage extends AppPage implements OnClickListener {
 		}
 
 		if (mainView != null) {
-//			arrowView = mainView.findViewById(R.id.backIcon);
-//			arrowView.setOnClickListener(this);
+
 		}
 
 
-		// View arrowView = mainView.findViewById(R.id.backIcon);
-		// arrowView.setOnClickListener(new OnClickListener(){
-		// @Override
-		// public void onClick(View v) {
-		// svg.slideView(true);
-		// }
-		// });
+
 		setOptionsMenuRes(R.menu.main_page_menu, true);
 
-	
-		
-//		View arrowView = mainView.findViewById(R.id.backIcon);
-//		arrowView.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View v) {
-//				svg.slideView(true);
-//			}
-//		});
 
-
-		WeatherApi.getWeatherByName("AU", "Sydney", this);
-//		WeatherApi.getWeatherByName("CN", "Beijing", this);
 		
 	}
 
 	@Override
 	protected void onActivate() {
-		// TODO Auto-generated method stub
+		
 		super.onActivate();
 		initActionBar();
 		
@@ -141,9 +97,9 @@ public class MainPage extends AppPage implements OnClickListener {
 
 	private void initActionBar() {
 		ActionBar actionBar = getActionBar();
-//		setOptionsMenuRes(R.menu.main_page_menu, true);
+
 		actionBar.show();
-//		setOptionsMenuRes(R.menu.main_page_menu, true);
+
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 		
@@ -152,66 +108,48 @@ public class MainPage extends AppPage implements OnClickListener {
 		 mViewPager = (ViewPager) mainView.findViewById(R.id.mScrollLayout);
 		 mTabsAdapter = new TabsAdapter(getFragmentManager(), mViewPager, actionBar, getContext());
 
-		//actionBar.hide();
-
-	     Bundle bundle= new Bundle();
-	     bundle.putString("cityname", "Sydney");
 
 
-		 mTabsAdapter.addTab(actionBar.newTab().setText("Sydney"), WeatherFragment.class, bundle);
+		 AddWeatherTab(actionBar,"AU","Sydney");
+		 AddWeatherTab(actionBar,"AU","Brisbane");
+		 AddWeatherTab(actionBar,"AU","Adelaide");
+		 AddWeatherTab(actionBar,"AU","Sydney");
+		 AddWeatherTab(actionBar,"AU","Brisbane");
+		 AddWeatherTab(actionBar,"AU","Adelaide");
 
-		 mTabsAdapter.addTab(actionBar.newTab().setText("Brisbane"), WeatherFragment.class, null);
-		 mTabsAdapter.addTab(actionBar.newTab().setText("Adelade"), WeatherFragment.class, null);
-//	        mTabsAdapter = new TabsAdapter(this, mViewPager);
-//	        mTabsAdapter.addTab(bar.newTab().setText("Simple"),
-//	                CountingFragment.class, null);
-//	        mTabsAdapter.addTab(bar.newTab().setText("List"),
-//	                FragmentPagerSupport.ArrayListFragment.class, null);
-//	        mTabsAdapter.addTab(bar.newTab().setText("Cursor"),
-//	                CursorFragment.class, null);
-//
-//	        if (savedInstanceState != null) {
-//	            bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
-//	        }
+
+
+
 	    }
 
-//	    @Override
-//	    protected void onSaveInstanceState(Bundle outState) {
-//	        super.onSaveInstanceState(outState);
-//	        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
-//	    }
 
 	
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Menu items default to never show in the action bar. On most devices this means
-//        // they will show in the standard options menu panel when the menu button is pressed.
-//        // On xlarge-screen devices a "More" button will appear in the far right of the
-//        // Action Bar that will display remaining items in a cascading menu.
-//        menu.add("Normal item");
-//
-//        MenuItem actionItem = menu.add("Action Button");
-//
-//        // Items that show as actions should favor the "if room" setting, which will
-//        // prevent too many buttons from crowding the bar. Extra items will show in the
-//        // overflow area.
-//        MenuItemCompat.setShowAsAction(actionItem, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
-//
-//        // Items that show as actions are strongly encouraged to use an icon.
-//        // These icons are shown without a text description, and therefore should
-//        // be sufficiently descriptive on their own.
-//        actionItem.setIcon(android.R.drawable.ic_menu_share);
-//        return true;
-//    }
 	
-	
-//
+private void AddWeatherTab(ActionBar actionBar, String country, String cityName) {
+	 mTabsAdapter.addTab(actionBar.newTab().setText(cityName).setContentDescription(country), WeatherFragment.class, null);
+		
+	}
+
+	//
     @Override 
 	protected boolean onOptionsItemSelected(int nItemId) {
         Toast.makeText(this.getContext(), "Selected Item: " + nItemId, Toast.LENGTH_SHORT).show();
+        switch (nItemId) {
+		case R.id.action_add:
+			showAddPage();
+			break;
+
+		default:
+			break;
+		}
         return true;
 	}
 
+
+	private void showAddPage() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void onClick(View aView) {
@@ -242,15 +180,7 @@ public class MainPage extends AppPage implements OnClickListener {
 
 
 
-	@Override
-	protected void onResponse(JSONObject aObject, int aType, int aErrCode) {
-		WeatherInfo weather = new WeatherInfo();
-		weather.fromJson(aObject);
-		
-		WeatherFragment wFragment = ((WeatherFragment)getFragmentManager().getFragments().get(0));
-		wFragment.setWeatherInfo(weather);
-		Logger.log(weather.toString());
-	}
+
 
 	/**
 	 * This is a helper class that implements the management of tabs and all
@@ -348,11 +278,10 @@ public class MainPage extends AppPage implements OnClickListener {
 
 		@Override
 		public Fragment getItem(int position) {
-			TabInfo info = mTabs.get(position);
-			String name =  mActionBar.getTabAt(position).getText().toString();
+
 //			return Fragment.instantiate(mContext, info.clss.getName(),
 //					info.args);
-			return WeatherFragment.newInstance(mActionBar.getTabAt(position).getText().toString());
+			return WeatherFragment.newInstance(mActionBar.getTabAt(position));
 		}
 
 		@Override

@@ -7,8 +7,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.crazybean.network.NetTask;
+import com.example.weatherdemo.api.WeatherApi;
 import com.example.weatherdemo.model.WeatherInfo;
 import com.example.weatherdemo.views.UiUtils;
+
+
 
 
 
@@ -23,6 +26,7 @@ import com.example.weatherdemo.views.UiUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar.Tab;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +41,8 @@ public class WeatherFragment extends Fragment implements NetTask.IObserver,OnCli
 	
 	
 
-	WeatherInfo weatherInfo;
-	String cityName;
+	WeatherInfo weatherInfo=new WeatherInfo();;
+	String cityName,countryName;
 	
 	
 
@@ -67,14 +71,29 @@ View chartView;
 		// Intent intent = fa.getIntent();
 		ll = (RelativeLayout) inflater.inflate(R.layout.iweather_item,
 				container, false);
-		init();
+		
 		
 		
 		cityName = this.getArguments().getString("name");
+		countryName = this.getArguments().getString("country");
+		
 
 
 		return ll;
 	}
+	
+	
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		
+		super.onViewCreated(view, savedInstanceState);
+		
+		
+		WeatherApi.getWeatherByName(countryName, cityName, this);
+	}
+
+
 
 	private void init() {
 		ll.findViewById(R.id.rlTodayInfo).setOnClickListener(this);
@@ -251,6 +270,10 @@ View chartView;
 	}
 	
 	protected void onResponse(JSONObject aObject, int aType, int aErrCode) {
+		
+		weatherInfo.fromJson(aObject);
+		this.setWeatherInfo(weatherInfo);
+
 	}
 
 	@Override
@@ -260,11 +283,12 @@ View chartView;
 	}
 	
 	
-    public static WeatherFragment newInstance(String text) {
+    public static WeatherFragment newInstance(Tab tab) {
 
     	WeatherFragment f = new WeatherFragment();
         Bundle b = new Bundle();
-        b.putString("name", text);
+        b.putString("name", tab.getText().toString());
+        b.putString("country", tab.getContentDescription().toString());
 
         f.setArguments(b);
 
