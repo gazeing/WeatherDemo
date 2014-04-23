@@ -11,6 +11,12 @@
         android:id="@+id/action_share"
         android:icon="@drawable/ic_menu_share"
         app:showAsAction="ifRoom"
-        android:title="yes"/>
+        android:title="share"/>
+    
+       <item
+        android:id="@+id/action_delete"
+        android:icon="@drawable/ic_menu_delete"
+        app:showAsAction="ifRoom"
+        android:title="delete"/>
 
 </menu>

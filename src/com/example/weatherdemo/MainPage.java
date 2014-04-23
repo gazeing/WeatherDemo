@@ -97,6 +97,10 @@ public class MainPage extends AppPage implements OnClickListener {
 
 	private void initActionBar() {
 		ActionBar actionBar = getActionBar();
+		actionBar.setTitle("Weather Demo" + getString(R.string.app_name));
+		actionBar.setSubtitle("sub-title"); 
+	
+		actionBar.setIcon(R.drawable.ic_launcher);
 
 		actionBar.show();
 
