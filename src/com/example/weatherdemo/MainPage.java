@@ -1,8 +1,15 @@
 package com.example.weatherdemo;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,9 +23,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import com.example.weatherdemo.R.string;
 import com.example.weatherdemo.views.SlideViewGroup;
 
 public class MainPage extends AppPage implements OnClickListener {
+	
+	 public static final String PREFS_NAME = "MyPrefsFile";
+	 
+	 
+	List<CityCountry> city_list = new ArrayList<MainPage.CityCountry>();
 
 	View leftView, rightView, mainView;
 
@@ -37,6 +50,31 @@ public class MainPage extends AppPage implements OnClickListener {
 		super(R.layout.page_iweather);
 
 	}
+	
+	
+
+	@Override
+	protected void onDestroy() {
+		SharedPreferences settings =getContext().getSharedPreferences(PREFS_NAME, 0);
+		 SharedPreferences.Editor editor = settings.edit();
+		 editor.clear();
+		 for(CityCountry c:city_list){
+			 editor.putString(c.city, c.countryCode);
+		 }
+		 editor.commit();
+
+		super.onDestroy();
+	}
+
+
+
+	@Override
+	protected boolean exitConfirm() {
+
+		return super.exitConfirm();
+	}
+
+
 
 	@Override
 	protected void onCreate() {
@@ -84,11 +122,21 @@ public class MainPage extends AppPage implements OnClickListener {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onActivate() {
 		
 		super.onActivate();
 		initActionBar();
+		
+		SharedPreferences settings =getContext().getSharedPreferences(PREFS_NAME, 0);
+		
+		 Map<String, String> cityMap = (Map<String, String>) settings.getAll();
+		 for(Entry<String, String> entry:cityMap.entrySet()){
+			 AddWeatherTab(entry.getValue(),entry.getKey());
+		 }
+		
+		 
 		
 
 	}
@@ -97,25 +145,25 @@ public class MainPage extends AppPage implements OnClickListener {
 
 	private void initActionBar() {
 		ActionBar actionBar = getActionBar();
-		actionBar.setTitle("Weather Demo" + getString(R.string.app_name));
-		actionBar.setSubtitle("sub-title"); 
+//		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME, ActionBar.DISPLAY_SHOW_CUSTOM);
+//		actionBar.setDisplayShowTitleEnabled(true);
+
 	
 		actionBar.setIcon(R.drawable.ic_launcher);
-
-		actionBar.show();
-
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-		
+		actionBar.setTitle("Weather Demo" + getString(R.string.app_name));
+		actionBar.setSubtitle("sub-title"); 
 
+		actionBar.show();
 		
 		 mViewPager = (ViewPager) mainView.findViewById(R.id.mScrollLayout);
 		 mTabsAdapter = new TabsAdapter(getFragmentManager(), mViewPager, actionBar, getContext());
 
+		 mViewPager.setAdapter(mTabsAdapter);
 
 
-
-		 AddWeatherTab("AU","Brisbane");
+//		 AddWeatherTab("AU","Brisbane");
 	
 
 
@@ -128,6 +176,8 @@ public class MainPage extends AppPage implements OnClickListener {
 	
 private void AddWeatherTab( String country, String cityName) {
 	 mTabsAdapter.addTab(getActionBar().newTab().setText(cityName).setContentDescription(country), WeatherFragment.class, null);
+//	 mTabsAdapter.notifyDataSetChanged();
+	 MainPage.this.city_list.add(new CityCountry(cityName, country));
 		
 	}
 
@@ -162,6 +212,7 @@ private void AddWeatherTab( String country, String cityName) {
 			@Override
 			public void userSelectedAValue(String coutry, String city) {
 				MainPage.this.AddWeatherTab( coutry, city);
+				
 				
 			}
 		});
@@ -217,17 +268,15 @@ private void AddWeatherTab( String country, String cityName) {
 		public TabsAdapter(FragmentManager fm, ViewPager pager, ActionBar ac,
 				Context activity) {
 			super(fm);
-			mViewPager = pager;
-			mContext = activity;
-			mViewPager.setAdapter(this);
-			mViewPager.setOnPageChangeListener(this);
+			mTabs = new ArrayList<TabInfo>();
+			mReference = new WeakReference<Context>(activity);
+			//mViewPager.setAdapter(this);
 			mActionBar = ac;
 		}
 
-		private final Context mContext;
+		private final WeakReference<Context> mReference;
 		private final ActionBar mActionBar;
-		private final ViewPager mViewPager;
-		private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
+		private ArrayList<TabInfo> mTabs;
 
 		static final class TabInfo {
 			private final Class<?> clss;
@@ -281,8 +330,8 @@ private void AddWeatherTab( String country, String cityName) {
 		public void onTabSelected(Tab tab, FragmentTransaction arg1) {
 			Object tag = tab.getTag();
 			for (int i = 0; i < mTabs.size(); i++) {
-				if (mTabs.get(i) == tag) {
-					mViewPager.setCurrentItem(i);
+				if (mTabs.get(i) == tag)  {
+				//	mViewPager.setCurrentItem(i);
 				}
 			}
 
@@ -306,6 +355,24 @@ private void AddWeatherTab( String country, String cityName) {
 		public int getCount() {
 			return mTabs.size();
 		}
+	}
+	
+	
+	public class CityCountry{
+		String city;
+		String countryCode;
+		public CityCountry(String city, String countryCode) {
+			super();
+			this.city = city;
+			this.countryCode = countryCode;
+		}
+		public String getCity() {
+			return city;
+		}
+		public String getCountryCode() {
+			return countryCode;
+		}
+		
 	}
 
 }

@@ -23,6 +23,8 @@ import com.example.weatherdemo.views.UiUtils;
 
 
 
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -38,6 +40,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class WeatherFragment extends Fragment implements NetTask.IObserver,OnClickListener{
+	
+
+
 	
 	
 
@@ -102,6 +107,10 @@ View chartView;
 		btnIndexs = ll.findViewById(R.id.btnIndexs);
 		
 		initViews();
+		
+
+
+
 		
 	}
 	
