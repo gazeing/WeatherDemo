@@ -1,14 +1,10 @@
 package com.example.weatherdemo;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,12 +14,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
+import android.support.v7.app.ActionBar.TabListener;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-import com.example.weatherdemo.R.string;
 import com.example.weatherdemo.views.SlideViewGroup;
 
 public class MainPage extends AppPage implements OnClickListener {
@@ -158,9 +154,34 @@ public class MainPage extends AppPage implements OnClickListener {
 		actionBar.show();
 		
 		 mViewPager = (ViewPager) mainView.findViewById(R.id.mScrollLayout);
-		 mTabsAdapter = new TabsAdapter(getFragmentManager(), mViewPager, actionBar, getContext());
+		 mTabsAdapter = new TabsAdapter(getFragmentManager(), actionBar);
+		 TabListener tabListener = new TabListener() {
+			
+			@Override
+			public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+				Object tag = tab.getTag();
+				int position = MainPage.this.mTabsAdapter.findTagPositon(tag);
+				if (position>=0)
+					 MainPage.this.mViewPager.setCurrentItem(position);
+	
+			}
+			
+			@Override
+			public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		mTabsAdapter.setTabListener(tabListener);
 
 		 mViewPager.setAdapter(mTabsAdapter);
+		 mViewPager.setOnPageChangeListener(mTabsAdapter);
 
 
 //		 AddWeatherTab("AU","Brisbane");
@@ -264,19 +285,35 @@ private void AddWeatherTab( String country, String cityName) {
 	 */
 
 	public static class TabsAdapter extends FragmentPagerAdapter implements
-			ActionBar.TabListener, ViewPager.OnPageChangeListener {
-		public TabsAdapter(FragmentManager fm, ViewPager pager, ActionBar ac,
-				Context activity) {
+			/*ActionBar.TabListener, */ViewPager.OnPageChangeListener {
+		public TabsAdapter(FragmentManager fm,  ActionBar ac) {
 			super(fm);
 			mTabs = new ArrayList<TabInfo>();
-			mReference = new WeakReference<Context>(activity);
+//			mReference = new WeakReference<Context>(activity);
 			//mViewPager.setAdapter(this);
 			mActionBar = ac;
 		}
 
-		private final WeakReference<Context> mReference;
+public int findTagPositon(Object tag) {
+	for (int i = 0; i < mTabs.size(); i++) {
+		if (mTabs.get(i) == tag)  {
+		return i;
+		}
+	}
+	return -1;
+		}
+
+
+//		private final WeakReference<Context> mReference;
 		private final ActionBar mActionBar;
 		private ArrayList<TabInfo> mTabs;
+		TabListener tabListener;
+		
+		
+
+		public void setTabListener(TabListener tabListener) {
+			this.tabListener = tabListener;
+		}
 
 		static final class TabInfo {
 			private final Class<?> clss;
@@ -294,7 +331,8 @@ private void AddWeatherTab( String country, String cityName) {
 		public void addTab(ActionBar.Tab tab, Class<?> clss, Bundle args) {
 			TabInfo info = new TabInfo(clss, args);
 			tab.setTag(info);
-			tab.setTabListener(this);
+			tab.setTabListener(tabListener);
+			
 			mTabs.add(info);
 			mActionBar.addTab(tab);
 			notifyDataSetChanged();
@@ -320,28 +358,28 @@ private void AddWeatherTab( String country, String cityName) {
 
 		}
 
-		@Override
-		public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
-			// TODO Auto-generated method stub
+//		@Override
+//		public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+//			// TODO Auto-generated method stub
+//
+//		}
+//
+//		@Override
+//		public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+//			Object tag = tab.getTag();
+//			for (int i = 0; i < mTabs.size(); i++) {
+//				if (mTabs.get(i) == tag)  {
+//				//	mViewPager.setCurrentItem(i);
+//				}
+//			}
+//
+//		}
+//
+//		@Override
+//		public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+//			// TODO Auto-generated method stub
 
-		}
-
-		@Override
-		public void onTabSelected(Tab tab, FragmentTransaction arg1) {
-			Object tag = tab.getTag();
-			for (int i = 0; i < mTabs.size(); i++) {
-				if (mTabs.get(i) == tag)  {
-				//	mViewPager.setCurrentItem(i);
-				}
-			}
-
-		}
-
-		@Override
-		public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
-			// TODO Auto-generated method stub
-
-		}
+//		}
 
 		@Override
 		public Fragment getItem(int position) {

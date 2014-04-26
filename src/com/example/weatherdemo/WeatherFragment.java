@@ -177,7 +177,28 @@ View chartView;
 
 	private int getWeatherImage(WeatherInfo weatherInfo2) {
 		// TODO Auto-generated method stub
-		return R.drawable.day0;
+	String icon = weatherInfo2.getWeather().get(0).getIcon().toString().substring(0, 2);
+	int id = R.drawable.day0;
+	if (icon.equals("01")) {
+		id = R.drawable.day0;
+	}else if (icon.equals("02")) {
+		id = R.drawable.day1;
+	}else if (icon.equals("03")) {
+		id = R.drawable.day2;
+	}else if (icon.equals("04")) {
+		id = R.drawable.day2;
+	}else if (icon.equals("09")) {
+		id = R.drawable.day3;
+	}else if (icon.equals("10")) {
+		id = R.drawable.day9;
+	}else if (icon.equals("11")) {
+		id = R.drawable.day4;
+	}else if (icon.equals("13")) {
+		id = R.drawable.day15;
+	}else if (icon.equals("50")) {
+		id = R.drawable.day18;
+	} 
+		return id;
 	}
 
 	public void initTabs(View view) {
