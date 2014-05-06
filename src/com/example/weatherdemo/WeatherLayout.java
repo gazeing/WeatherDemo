@@ -32,7 +32,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 //			try {
 //				weather = new WeatherInfo();
 //				weather.parse(content, getContext());
-//				// 保存到数据库
+//				// 淇�瀛���版�版��搴�
 //				ConstUtils.setWeatherInfo(mContext, cityCode, content);
 //				initViews();
 //				return;
@@ -64,7 +64,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 	View btnForcast;
 	View btnChart;
 	View btnIndexs;
-	View btnTaobao;
+//	View btnTaobao;
 
 	private boolean isLoading;
 
@@ -74,16 +74,16 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 		super(context);
 
 		mContext = context;
-		// 加载布局文件
+		// ���杞藉��灞����浠�
 		LayoutInflater layoutInflater = (LayoutInflater) mContext
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutInflater.inflate(R.layout.iweather_item, this);
-		// 初始化点击时间
+		// ���濮������瑰�绘�堕��
 		findViewById(R.id.rlTodayInfo).setOnClickListener(this);
 		btnForcast = findViewById(R.id.btnForcast);
 		btnChart = findViewById(R.id.btnChart);
 		btnIndexs = findViewById(R.id.btnIndexs);
-		btnTaobao = findViewById(R.id.btnTaobao);
+	//	btnTaobao = findViewById(R.id.btnTaobao);
 
 		btnForcast.setOnClickListener(this);
 		btnChart.setOnClickListener(this);
@@ -105,7 +105,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 //				+ ConstUtils.getTomorrowDateFormat("dd/MM  HH:mm", time, 0));
 //
 //		TextView todayTempNow = (TextView) findViewById(R.id.todayTempNow);
-//		todayTempNow.setText(weather.temp_now + "°");
+//		todayTempNow.setText(weather.temp_now + "掳");
 //
 //		TextView todayTemp = (TextView) findViewById(R.id.todayTemp);
 //		todayTemp.setText(weather.temp);
@@ -133,9 +133,9 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 //		msg.append("Today:").append(weather.city).append(",")
 //				.append(weather.weather).append(",").append(weather.temp)
 //				.append(",Humidity:").append(weather.humidity).append(",")
-//				.append(weather.wind).append("|Tomorrow：")
+//				.append(weather.wind).append("|Tomorrow锛�")
 //				.append(weather.forcasts.get(1).weather).append(",")
-//				.append(weather.forcasts.get(1).temp).append("|2 Days：")
+//				.append(weather.forcasts.get(1).temp).append("|2 Days锛�")
 //				.append(weather.forcasts.get(2).weather).append(",")
 //				.append(weather.forcasts.get(2).temp).append("-ColorWeather");
 //
@@ -204,7 +204,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 //
 //			TextView tvWeather = (TextView) item.findViewById(R.id.tvWeather);
 //			
-//			int nPos = w.weather.indexOf("转");
+//			int nPos = w.weather.indexOf("杞�");
 //			if (nPos > 0)
 //				tvWeather.setText(w.weather.substring(0, nPos));
 //			else
@@ -212,17 +212,17 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 //
 //			TextView tvWind = (TextView) item.findViewById(R.id.tvWind);
 //			String wind = w.wind.replace("-", "/");
-//			nPos = wind.indexOf("转");
+//			nPos = wind.indexOf("杞�");
 //			if (nPos > 0) {
 //				wind = (wind.substring(nPos + 1));
-//				if (!wind.contains("风")) {
+//				if (!wind.contains("椋�")) {
 //					wind = w.wind.replace("-", "/");
 //					wind = (wind.substring(0, nPos));
 //				}
 //			}
 //			if (wind.length() > 3) {
-//				wind = wind.replace("风", ":").replace("小于", "<")
-//						.replace("大于", ">");
+//				wind = wind.replace("椋�", ":").replace("灏�浜�", "<")
+//						.replace("澶т��", ">");
 //			}
 //			tvWind.setText(wind);
 //
@@ -247,7 +247,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 //		int[] yL = new int[6];
 //		for (int i = 0; i < 6; i++) {
 //			WeatherInfo.Forecasts w = weather.forcasts.get(i);
-//			String[] temps = w.temp.replace("℃", "").split("/");
+//			String[] temps = w.temp.replace("���", "").split("/");
 //			int t1 = Integer.parseInt(temps[0]);
 //			int t2 = Integer.parseInt(temps[1]);
 //			if (t1 > t2) {
@@ -337,9 +337,9 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 
 			initIndexsView();
 			break;
-		case R.id.btnTaobao:
-			initTaobaoView();
-			break;
+//		case R.id.btnTaobao:
+//			initTaobaoView();
+//			break;
 //		case R.id.adview:
 //			mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri
 //					.parse(url)));
@@ -358,7 +358,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 		(btnForcast).setBackgroundResource(R.drawable.tab_normal);
 		(btnChart).setBackgroundResource(R.drawable.tab_normal);
 		(btnIndexs).setBackgroundResource(R.drawable.tab_normal);
-		(btnTaobao).setBackgroundResource(R.drawable.tab_normal);
+//		(btnTaobao).setBackgroundResource(R.drawable.tab_normal);
 
 		view.setBackgroundResource(R.drawable.tab_select);
 	}
@@ -390,10 +390,10 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 //
 //			initViews();
 //
-//			// 尝试更新天气
+//			// 灏�璇���存�板ぉ姘�
 //			int update = Integer.parseInt(ConstUtils.getValueByKey(mContext,
 //					SettingsActivity.KEY_UPDATE, "1"));
-//			// 手动刷新，不更新天气
+//			// �����ㄥ�锋�帮��涓���存�板ぉ姘�
 //			if (update != 5)
 //				getWeatherFromNet();
 //		} else {
@@ -405,10 +405,10 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 	}
 
 	public void setError() {
-		// showToast("天气更新失败");
+		// showToast("澶╂����存�板け璐�");
 		isLoading = false;
 		// TextView todayDesc = (TextView) findViewById(R.id.todayDesc);
-		// todayDesc.setText("网络超时，请点击屏幕，尝试刷新");
+		// todayDesc.setText("缃�缁�瓒���讹��璇风�瑰�诲��骞�锛�灏�璇���锋��");
 		findViewById(R.id.rlTodayInfo).setOnClickListener(this);
 	}
 
@@ -419,7 +419,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 	 * String oldTime = weathers6[0].date_y + " " + weathers6[0].Time; String
 	 * newTime = weathers[0].date_y + " " + weathers[0].Time;
 	 * 
-	 * SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+	 * SimpleDateFormat sf = new SimpleDateFormat("yyyy骞�MM���dd��� HH:mm");
 	 * sf.setTimeZone(TimeZone.getDefault()); Date d1 = new Date(); Date d2 =
 	 * new Date(); try { d1 = sf.parse(oldTime.trim()); d2 =
 	 * sf.parse(newTime.trim()); } catch (Exception e) { } if (d1.before(d2)) {
@@ -427,7 +427,7 @@ public class WeatherLayout extends RelativeLayout implements OnClickListener {
 	 * } else { weathers6 = weathers; initViews(); } }
 	 * 
 	 * @Override public void onWeatherError(String code, int widget_ID) {
-	 * isLoading = false; showToast("天气更新失败，显示为旧数据"); }
+	 * isLoading = false; showToast("澶╂����存�板け璐ワ����剧ず涓烘�ф�版��"); }
 	 */
 
 	private void showToast(String msg) {

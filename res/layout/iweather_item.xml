@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:background="@color/content_bg" >
 
     <RelativeLayout
         android:id="@+id/rlTodayInfo"
-        android:background="@color/content_bg"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="5dp" >
+        android:layout_marginTop="5dp"
+        android:layout_above="@+id/btnForcast"
+        android:background="@color/content_bg" >
 
         <TextView
             android:id="@+id/cityTV"
@@ -116,6 +117,7 @@
             android:textColor="#aaa" />
     </RelativeLayout>
 
+    <!--
     <LinearLayout
         android:id="@+id/tabs"
         android:layout_width="fill_parent"
@@ -187,6 +189,17 @@
             android:textSize="16dp" 
             android:visibility="invisible"/>
     </LinearLayout>
+    -->
+
+    <TextView
+        android:id="@+id/btnForcast"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/forcast_line"
+        android:background="@drawable/tab_select"
+        android:gravity="center"
+        android:text="@string/forecast"
+        android:textSize="16dp" />
 
     <ImageView
         android:id="@+id/forcast_line"
@@ -198,6 +211,60 @@
 
     <LinearLayout
         android:id="@+id/forcastLLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_above="@+id/btnChart"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnChart"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/chart_line"
+        android:gravity="center"
+        android:text="@string/trend"
+        android:textSize="16dp" />
+
+    <ImageView
+        android:id="@+id/chart_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/chartLLayout"
+        android:background="@color/black_color"
+        android:contentDescription="@string/app_name" />
+
+    <LinearLayout
+        android:id="@+id/chartLLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_above="@+id/btnIndexs"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnIndexs"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/indexs_line"
+        android:gravity="center"
+        android:text="@string/index"
+        android:textSize="16dp" />
+
+    <ImageView
+        android:id="@+id/indexs_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/indexsLLayout"
+        android:background="@color/black_color"
+        android:contentDescription="@string/app_name" />
+
+    <LinearLayout
+        android:id="@+id/indexsLLayout"
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:layout_above="@+id/updateTimeTV"
